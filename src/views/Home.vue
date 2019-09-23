@@ -1,14 +1,14 @@
 <template>
-  <div class="page">
-    <h2>Home Page</h2>
-    <el-button type="primary" @click="getUser()">获取用户信息</el-button>
-    <el-button type="primary" @click="getMenu()">获取菜单信息</el-button>
-  </div>
+  <el-row class="container">
+    <el-col :span="24" class="header">
+      <el-col :span="5" class="logo" :class="isCollapse?'logo=collapse-width':'logo-width'"></el-col>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
 import axios from "axios"
-import mock  from "@/mock/mock.js"
+import mock  from "@/mock/index.js"
 export default {
   name:"Home",
   methods: {
