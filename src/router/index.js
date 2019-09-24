@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/views/HelloWorld'
 import Login from "@/views/Login"
 import Home from "@/views/Home"
 import NotFound from "@/views/404"
+import Main from "@/views/Main"
+import User from "@/views/User"
+import Menu from "@/views/Menu"
 
 Vue.use(Router)
 
@@ -11,8 +13,13 @@ const router=new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: '首页',
+      component: Home,
+      children:[
+        {path:"/main",component:Main,name:"系统介绍"},
+        {path:"/user",component:User,name:"用户管理"},
+        {path:"/menu",component:Menu,name:"菜单管理"}
+      ]
     },
     {
       path: '/Login',
