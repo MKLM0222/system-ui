@@ -21,6 +21,9 @@
          </div>
       </el-col>
       <el-col :span="5" class="userinfo">
+         <span class="el-dropdown-link">
+           <ThemePicker></ThemePicker>
+         </span>
         <el-dropdown @command="handleCommand">
           <span id="language" class="el-dropdown-link language-inner">
             中文<i class="el-icon-arrow-down el-icon--right"></i>
@@ -33,7 +36,7 @@
         <el-dropdown trigger="hover">
           <span class="el-dropdown-link userinfo-inner">
             <img :src="this.userAvatar" alt=""/>
-            {{username}}
+            {{userName}}
           </span>
           <el-dropdown-menu slot="dropdown">
              <el-dropdown-item>{{$t("common.myMsg")}}</el-dropdown-item>
@@ -62,7 +65,6 @@
               <el-menu-item @click="$router.push('role')" index="1-1">{{$t("sys.roleMng")}}</el-menu-item>
               <el-menu-item @click="$router.push('menu')" index="1-2">{{$t("sys.menuMng")}}</el-menu-item>
               <el-menu-item @click="$router.push('log')" index="1-1">{{$t("sys.logMng")}}</el-menu-item>
-              <el-menu-item index="1-3">选项三</el-menu-item>
            </el-submenu>
            <el-menu-item index="2">
               <i class="el-icon-menu"></i>
@@ -101,8 +103,12 @@
 <script>
 import axios from "axios"
 import mock  from "@/mock/index.js"
+import ThemePicker from '@/components/ThemePicker'
 export default {
   name:"Home",
+  components: {
+    ThemePicker
+  },
   data() {
     return {
       isCollapse:false,
