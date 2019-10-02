@@ -49,9 +49,18 @@ export default {
       const styles = [].slice.call(document.querySelectorAll('style'))
                      .filter( style => {
                         const text = style.innerText
-                        return new RegExp(oldVal,'i').test(text) && !/ChalkVariables/.test(text)
+                        return new RegExp(oldVal,'i').test(text) && !/Chalk Variables/.test(text)
                      })
-      this.$message({
+       styles.forEach(style => {
+         const { innerText } = style
+         if(typeof innerText !== "string")return
+         style.innerText = this.updateStyle(innerText,originalCluster,themeCluster)
+       })
+
+       //响应外部操作
+       this.$emit('onThemeChange',val,oldVal)//把变更的新旧主题色都导出来，并且绑定函数，这样在父组件就可以获取主题颜色更新其他组件了
+
+       this.$message({
                  message:'换肤成功',
                  type:'success'
             })

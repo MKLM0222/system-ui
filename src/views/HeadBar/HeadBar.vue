@@ -1,7 +1,7 @@
 <template>
    <div class="container" :class="$store.state.app.collapse?'menu-bar-collapse-width':'menu-bar-width'">
        <!--导航菜单隐藏显示切换-->
-       <span class="hamburger-container">
+       <span class="hamburger-container" :style="{'background':themeColor}">
          <Hamburger :toggleClick="collapse" :isActive="$store.state.app.collapse"></Hamburger>
        </span>
        <!--导航菜单-->
@@ -16,7 +16,7 @@
        </span>
        <span class="tool-bar">
          <!--主题切换-->
-         <ThemePicker class="theme-picker"></ThemePicker>
+         <ThemePicker class="theme-picker" @onThemeChange="onThemeChange"></ThemePicker>
          <!--语言切换-->
          <langSelector class="lang-selector"></langSelector>
          <!--用户信息-->
@@ -40,6 +40,7 @@ import mock from "@/mock/index.js"
 import ThemePicker from "@/components/ThemePicker"
 import LangSelector from "@/components/LangSelector"
 import Hamburger from '@/components/Hamburger'
+import { mapState }from 'vuex'
 export default {
   components: {
      ThemePicker,
@@ -78,7 +79,16 @@ export default {
     //折叠导航栏
     collapse:function() {
       this.$store.commit('collapse')
+    },
+    //切换主题
+    onThemeChange:function(themeColor,oldThemeColor) {
+      this.$store.dispatch('onThemeChange',{themeColor,oldThemeColor})
     }
+  },
+  computed:{
+     ...mapState({
+       themeColor:state => state.app.themeColor
+     })
   },
   mounted() {
     this.sysName="System-UI";
