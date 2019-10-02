@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="form" :rules="fieldRules" ref="loginForm" label-position="left"
+  <el-form :model="loginForm" :rules="fieldRules" ref="loginForm" label-position="left"
   label-width="0px" class="demo-ruleForm login-container">
      <h3 class="title">系统登录</h3>
      <el-form-item prop="account">

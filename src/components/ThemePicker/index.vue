@@ -8,7 +8,7 @@
 
 <script>
 const version = require('element-ui/package.json').version//element-ui version from node_modules
-const ORIGINAL_THEME = '#409eff' // default color
+const ORIGINAL_THEME = '#4b5f6e' // default color
 export default {
   name: 'ThemePicker',
   data() {
@@ -51,25 +51,25 @@ export default {
                         const text = style.innerText
                         return new RegExp(oldVal,'i').test(text) && !/ChalkVariables/.test(text)
                      })
-            this.$message({
+      this.$message({
                  message:'换肤成功',
                  type:'success'
             })
 
     }
   },
-  method:{
+  methods:{
     updateStyle(style,oldCluster,newCluster) {
       let newStyle = style
       oldCluster.forEach((color,index) => {
-        newStyle = newStyle.replace(new RegExp(color,'ig'),newCluster(index))
+        newStyle = newStyle.replace(new RegExp(color,'ig'),newCluster[index])
       })
       return newStyle
     },
     getThemeCluster(theme){
       const tintColor = (color,tint) => {
         let red = parseInt(color.slice(0,2),16)
-        let green = parseInt(color,slice(2,4),16)
+        let green = parseInt(color.slice(2,4),16)
         let blue = parseInt(color.slice(4,6),16)
 
         if(tint === 0) {//when primary color is in its rgb space

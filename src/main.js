@@ -8,6 +8,7 @@ import ElementUI from "element-ui"
 import '@/theme/theme-4b5f6e/index.css'
 import api from './http/index'
 import i18n from './i18n'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ new Vue({
   el: '#app',
   i18n,
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
