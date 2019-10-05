@@ -23,7 +23,8 @@ export default {
   },
   methods: {
     handleRoute(menu) {
-      this.$router.push("/"+menu.url)
+      this.$router.push("/")
+      this.$router.push(menu.url)
     }
   }
 }

@@ -43,7 +43,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import MenuTree from  '@/components/MenuTree/index'
+import MenuTree from  '@/components/MenuTree'
 export default {
   components:{
     MenuTree
@@ -55,7 +55,7 @@ export default {
       logo: "",
     }
   },
-  methods: {
+  methods:{
     handleopen(){
       console.log("handleopen")
     },
@@ -64,15 +64,6 @@ export default {
     },
     handleselect(a,b){
       console.log("handleselect")
-    },
-    findMenuTree() {
-      this.$api.menu.findMenuTree()
-      .then( (res) => {
-        this.$store.commit('setMenuTree',res.data)
-      })
-      .catch(function(res){
-        alert(res);
-      })
     }
   },
   computed: {
@@ -82,9 +73,6 @@ export default {
       themeColor: state=> state.app.themeColor,
       menuTree: state=>state.menu.menuTree
     })
-  },
-  mounted() {
-    this.findMenuTree()
   }
 }
 </script>

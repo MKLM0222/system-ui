@@ -9,6 +9,8 @@ import * as menu from './modules/menu'
 //开启、关闭业务模块拦截，通过调用fnCreate方法[isOpen参数]设置，
 //开启，关闭[业务模块中年某个请求]拦截，通过函数返回对象中的[isOpen属性设置]
 
+let openMock = true
+
 fnCreate(login,true)
 fnCreate(user,true)
 fnCreate(menu,true)
