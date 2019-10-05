@@ -9,6 +9,8 @@ import '@/theme/theme-4b5f6e/index.css'
 import api from './http/index'
 import i18n from './i18n'
 import store from './store'
+import 'font-awesome/css/font-awesome.min.css'
+import '@/assets/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 
