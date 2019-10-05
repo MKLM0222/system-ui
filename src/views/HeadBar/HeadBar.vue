@@ -7,7 +7,7 @@
        <!--导航菜单-->
        <span class="nav-bar">
          <el-menu :default-active="activeIndex" class="el-menu-demo"
-           background-color="#4b5f6e" text-color="#fff"
+           :style="{'background':themeColor}" text-color="#fff"
              active-text-color="#ffd04b" mode="horizontal" @select="selectNavBar()">
             <el-menu-item index="1" @click="$router.push('/')">{{$t("common.home")}}</el-menu-item>
             <el-menu-item index="2">{{$t("common.doc")}}</el-menu-item>
@@ -118,13 +118,13 @@ export default {
     border-right-width: 1px;
     border-right-style: solid;
     color: white;
-    background: #504e6180;
+    background: #4b5f6e;
   }
   .nav-bar {
     margin-left: auto;
     float: left;
     .el-menu {
-      background: #504e6180;
+      background: #4b5f6e;
     }
   }
   .tool-bar {
