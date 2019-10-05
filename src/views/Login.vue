@@ -45,7 +45,7 @@ export default {
     login(){
       let userInfo = {account:this.loginForm.account,
                       password:this.loginForm.password}
-      this.$api.login().then((res)=>{
+      this.$api.login.login(JSON.stringify(userInfo)).then((res)=>{
           Cookies.set('token',res.data.token)//放置token到cookie
           sessionStorage.setItem("user",userInfo.account)//将用户保存到本地对话
           this.$router.push("/")//登录成功，跳转到主页

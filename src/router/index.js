@@ -17,7 +17,7 @@ const router=new Router({
       component: Home,
       children:[
         {path:"",component:Intro,name:"系统介绍"},
-        {path:"/user",component:User,name:"用户管理"},
+        {path:"//sys/user",component:User,name:"用户管理"},
         {path:"/menu",component:Menu,name:"菜单管理"}
       ]
     },

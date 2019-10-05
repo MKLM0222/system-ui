@@ -10,7 +10,7 @@
          @close="handleclose"
          @select="handleselect"
          :collapse="collapse">
-           <el-submenu index="1">
+           <!--el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
                 <span slot="title">{{$t("sys.sysMng")}}</span>
@@ -34,14 +34,20 @@
           <el-menu-item index="4">
             <i class="el-icon-setting"></i>
             <span slot="title">{{$t("sys.nav4")}}</span>
-          </el-menu-item>
+          </el-menu-item-->
+          <!--导航菜单树组件，动态加载菜单-->
+           <MenuTree v-for="item in menuTree" :key="item.menuId" :menu="item"></MenuTree>
         </el-menu>
    </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import MenuTree from  '@/components/MenuTree/index'
 export default {
+  components:{
+    MenuTree
+  },
   data() {
     return {
       isCollapse:false,
@@ -58,17 +64,27 @@ export default {
     },
     handleselect(a,b){
       console.log("handleselect")
+    },
+    findMenuTree() {
+      this.$api.menu.findMenuTree()
+      .then( (res) => {
+        this.$store.commit('setMenuTree',res.data)
+      })
+      .catch(function(res){
+        alert(res);
+      })
     }
   },
   computed: {
     ...mapState({
       appName: state=>state.app.appName,
-      collapse: state=>state.app.collapse
+      collapse: state=>state.app.collapse,
+      themeColor: state=> state.app.themeColor,
+      menuTree: state=>state.menu.menuTree
     })
   },
   mounted() {
-    this.sysName="System-UI";
-    this.logo=require("@/assets/logo.png");
+    this.findMenuTree()
   }
 }
 </script>
