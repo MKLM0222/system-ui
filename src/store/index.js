@@ -5,11 +5,13 @@ Vue.use(vuex);
 
 import app from './modules/AppStore.js'
 import menu from './modules/Menu.js'
+import user from './modules/User.js'
 
 const store = new vuex.Store({
    modules: {
      app: app,
-     menu:menu
+     menu:menu,
+     user:user
    }
 })
 

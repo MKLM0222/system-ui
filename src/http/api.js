@@ -5,10 +5,12 @@
 import * as login from './modules/login'
 import * as user from './modules/user'
 import * as menu from './modules/menu'
+import * as dept from './modules/dept'
 //单独导出
 
 export default {
    login,
    user,
-   menu
+   menu,
+   dept
 }

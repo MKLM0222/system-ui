@@ -45,12 +45,23 @@ export default {
     login(){
       let userInfo = {account:this.loginForm.account,
                       password:this.loginForm.password}
-      this.$api.login.login(JSON.stringify(userInfo)).then((res)=>{
+      this.$api.login.login(userInfo).then((res)=>{
+          if(res.msg != 'success') {
+            this.$message({
+              message: res.msg,
+              type:'error'
+            })
+          }else{
           Cookies.set('token',res.data.token)//放置token到cookie
           sessionStorage.setItem("user",userInfo.account)//将用户保存到本地对话
+          this.$store.commit('menuRouteLoaded',false)//要求重新加载导航菜单
           this.$router.push("/")//登录成功，跳转到主页
+          }
       }).catch(function(res) {
-        alert(res);
+          this.$message({
+            message:res.message,
+            type:'error'
+          })
       })
     },
     reset(){

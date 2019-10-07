@@ -1,0 +1,44 @@
+<template>
+  <el-button :size="size" :type="type" :loading="loading" :disabled="!hasPerms(perms)" @click="handleClick"></el-button>
+</template>
+
+<script>
+import { hasPermission } from '@/permission/index.js'
+export default {
+  name: 'KtButton',
+  props: {
+    size: {
+      type:String,
+      default: 'mini'
+    },
+    type: {
+      type:String,
+      default:'null'
+    },
+    loading: {
+      type:Boolean,
+      default:false
+    },
+    disabled: {
+      type:Boolean,
+      default:false
+    },
+    perms: {
+      type: String,
+      default:null
+    }
+  },
+  methods: {
+    handleClick: function() {
+      this.$emit('click',{})
+    },
+    hasPerms: function(perms) {
+      return hasPermission(perms) & !this.disabled
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+
+</style>

@@ -5,7 +5,7 @@ import axios from '../axios'
 //登录
 export const login = data => {
    return axios({
-      url:'/login',
+      url:'login',
       method: 'post',
       data
    })
@@ -14,7 +14,7 @@ export const login = data => {
 //登出
 export const logout = () => {
   return axios({
-     url: '/logout',
+     url: 'logout',
      method: 'get'
   })
 }

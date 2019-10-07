@@ -7,7 +7,7 @@ import Intro from "@/views/Intro"
 import User from "@/views/Sys/User"
 import Menu from "@/views/Sys/Menu"
 import Dept from '@/views/Sys/Dept'
-import api from '../http/api'
+import api from '@/http/api'
 import store from '@/store'
 import { isURL } from '@/utils/validate'
 
@@ -42,31 +42,31 @@ const router=new Router({
 router.beforeEach((to,from,next) => {
   //登录界面登录成功之后，会把用户信息保存在会话
   //存在时间为会话生命周期，页面关闭就失效。
-  let user = sessionStorage.getItem('user');
+  let userName = sessionStorage.getItem('user');
   if(to.path=="/login") {
     //如果访问登录界面，如果用户会话信息存在，代表已登录过，跳转到主页
-    if(user) {
+    if(userName) {
       next({path:"/"})
     }else{
       next()
     }
   }else {
     //访问非登录界面，且用户会话信息不存在，表示未登录，则跳转到登录界面
-    if(!user) {
+    if(!userName) {
       next({path:"/login"})
     }else{
-      addDynamicMenuAndRoutes()
+      addDynamicMenuAndRoutes(userName,to,from)
       next()
     }
   }
 
   //加载动态菜单和路由
-  function addDynamicMenuAndRoutes() {
+  function addDynamicMenuAndRoutes(userName,to,from) {
     if(store.state.app.menuRouteLoaded) {
       console.log('动态菜单和路由已经存在')
       return
     }
-     api.menu.findMenuTree()
+     api.menu.findNavTree({'userName':userName})
      .then((res) => {
       store.commit('setMenuTree',res.data)//加载成功之后存入store页面菜单组件从store取出数据渲染菜单
       //添加动态路由

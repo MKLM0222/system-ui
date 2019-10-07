@@ -3,7 +3,8 @@ export default {
     appName:"System-UI", //应用名称
     themeColor: "545c64",//主题颜色
     oldThemeColor: '#545c64',//上一次主题颜色
-    collapse: false //导航栏收缩状态
+    collapse: false ,//导航栏收缩状态
+    menuRouteLoaded:false //菜单和是否已经加载
   },
   getters: {
     collapse(state) {
@@ -19,6 +20,9 @@ export default {
     },
     oldThemeColor(state,oldThemeColor) {
       state.oldThemeColor = oldThemeColor;
+    },
+    menuRouteLoaded(state,menuRouteLoaded) {
+      state.menuRouteLoaded = menuRouteLoaded
     }
   },
   actions: {

@@ -36,7 +36,7 @@
             <span slot="title">{{$t("sys.nav4")}}</span>
           </el-menu-item-->
           <!--导航菜单树组件，动态加载菜单-->
-           <MenuTree v-for="item in menuTree" :key="item.menuId" :menu="item"></MenuTree>
+           <MenuTree v-for="item in menuTree" :key="item.id" :menu="item"></MenuTree>
         </el-menu>
    </div>
 </template>
