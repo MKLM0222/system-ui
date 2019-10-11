@@ -2,7 +2,7 @@
   <div class="container" :class="$store.state.app.collapse?'menu-bar-collapse-width':'menu-bar-width'">
     <el-breadcrumb  separator="/" class="breadcrumb">
       <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-         <a href="www.baidu.com">{{item.name}}</a>
+         <router-link :to="item.path">{{item.name}}</router-link>
       </el-breadcrumb-item>
       <transition name="fade" mode="out-in">
           <router-view class="content"></router-view>
@@ -45,9 +45,10 @@ export default {
     background:rgba(138,158,170,0.2)
   }
   .content {
-    margin-top:-25px;
+    //margin-top:-25px;
     margin-bottom: 5px;
     padding-top: 5px;
+    margin-left:2px;
   }
 }
  .menu-bar-width {

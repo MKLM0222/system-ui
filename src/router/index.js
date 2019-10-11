@@ -39,6 +39,8 @@ const router=new Router({
   ]
 })
 
+
+
 router.beforeEach((to,from,next) => {
   //登录界面登录成功之后，会把用户信息保存在会话
   //存在时间为会话生命周期，页面关闭就失效。
@@ -68,11 +70,19 @@ router.beforeEach((to,from,next) => {
     }
      api.menu.findNavTree({'userName':userName})
      .then((res) => {
-      store.commit('setMenuTree',res.data)//加载成功之后存入store页面菜单组件从store取出数据渲染菜单
+
       //添加动态路由
       let dynamicRoutes = addDynamicRoutes(res.data)
       router.options.routes[0].children = router.options.routes[0].children.concat(dynamicRoutes)
       router.addRoutes(router.options.routes);
+      store.commit('setNavTree',res.data)//加载成功之后存入store页面菜单组件从store取出数据渲染菜单
+      store.commit('menuRouteLoaded',true)//保存菜单树
+    })
+    .then(res => {
+      api.user.findPermissions({'name':userName}).then(res => {
+          //保存用户权限标识集合
+          store.commit('setPerms',res.data)
+      })
     })
    .catch(function(err){
       alert(err)

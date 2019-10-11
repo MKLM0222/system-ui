@@ -40,7 +40,7 @@ export default {
     permsDelete:String,
     maxHeight:{//表格最大高度
       type:Number,
-      default:420
+      default:400
     },
     size:{//尺寸样式
       type:String,
@@ -68,11 +68,11 @@ export default {
       this.$emit('findPage',{pageRequest:this.pageRequest})
     },
     //选择切换
-    selectionChange: function (selections) {
+    selectionChange: function(selections) {
       this.selections = selections
     },
     //换页刷新
-    refreshPageRequest: function (pageNum) {
+    refreshPageRequest:function(pageNum){
       this.pageRequest.pageNum = pageNum
       this.findPage()
     },
@@ -81,7 +81,7 @@ export default {
       this.$emit('handleEdit',{index:index,row:row})
     },
     //删除
-    handleDelete: function (index,row) {
+    handleDelete: function(index,row) {
       this.delete(row.id)
     },
     //批量删除
@@ -108,10 +108,11 @@ export default {
 
            })
     },
-    mounted() {
+  },
+   mounted() {
+      console.log("true")
       this.refreshPageRequest(1)
     }
-  }
 }
 </script>
 

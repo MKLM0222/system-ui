@@ -1,4 +1,4 @@
-const menuTreeData = {
+const navTreeData = {
   "code": 200,
   "msg": null,
   "data":  [
@@ -102,7 +102,7 @@ const menuTreeData = {
             "parentId": 1,
             "name": "系统日志",
             "url": "/sys/log",
-            "perms": "sys:log:list",
+            "perms": "sys:log:view",
             "type": 1,
             "icon": "el-icon-info",
             "orderNum": 7,
@@ -221,6 +221,6 @@ export function findNavTree() {
     //isOpen:false
     url:'menu/findNavTree',
     type: 'get',
-    data: menuTreeData
+    data: navTreeData
   }
 }

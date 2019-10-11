@@ -36,7 +36,7 @@
             <span slot="title">{{$t("sys.nav4")}}</span>
           </el-menu-item-->
           <!--导航菜单树组件，动态加载菜单-->
-           <MenuTree v-for="item in menuTree" :key="item.id" :menu="item"></MenuTree>
+           <MenuTree v-for="item in navTree" :key="item.id" :menu="item"></MenuTree>
         </el-menu>
    </div>
 </template>
@@ -71,7 +71,7 @@ export default {
       appName: state=>state.app.appName,
       collapse: state=>state.app.collapse,
       themeColor: state=> state.app.themeColor,
-      menuTree: state=>state.menu.menuTree
+      navTree: state=>state.menu.navTree
     })
   }
 }
