@@ -7,6 +7,7 @@ import * as user from './modules/user'
 import * as menu from './modules/menu'
 import * as dept from './modules/dept'
 import * as dict from './modules/dict'
+import * as log  from './modules/log'
 
 //开启、关闭业务模块拦截，通过调用fnCreate方法[isOpen参数]设置，
 //开启，关闭[业务模块中年某个请求]拦截，通过函数返回对象中的[isOpen属性设置]
@@ -18,6 +19,7 @@ fnCreate(user,openMock)
 fnCreate(dept,openMock)
 fnCreate(menu,openMock)
 fnCreate(dict,openMock)
+fnCreate(log,openMock)
 
 function fnCreate (mod,isOpen = true) {
   if(isOpen) {

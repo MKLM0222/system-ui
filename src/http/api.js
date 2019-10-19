@@ -7,6 +7,7 @@ import * as user from './modules/user'
 import * as menu from './modules/menu'
 import * as dict from './modules/dict'
 import * as dept from './modules/dept'
+import * as log  from './modules/log'
 //单独导出
 
 export default {
@@ -14,5 +15,6 @@ export default {
    user,
    menu,
    dict,
-   dept
+   dept,
+   log
 }
