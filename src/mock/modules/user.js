@@ -110,7 +110,9 @@ export function findPermissions() {
         "sys:role:delete",
         "sys:menu:view",
         "sys:menu:edit",
-        "sys:role:add"
+        "sys:role:add",
+        "sys:dict:edit",
+        "sys:dict:delete"
       ]
    }
    return {

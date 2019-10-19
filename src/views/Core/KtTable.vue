@@ -3,12 +3,13 @@
     <!--表格栏-->
     <el-table :data="data.content" stripe highlight-current-row @selection-change="selectionChange"
     :v-loading="loading" :max-height="maxHeight" :size="size" :align="align" style="width:100%">
-      <el-table-column type="selection" width="40">
+      <el-table-column type="selection" width="40" v-if="showOperation">
       </el-table-column>
       <el-table-column v-for="column in columns"
       :prop="column.prop" :label="column.label" :width="column.width" :min-width="column.minWidth"
-      :sortable="column.soratable" :fixed="column.fixed" :key="column.prop" :type="column.type"></el-table-column>
-      <el-table-column label="操作" width="150" fixed="right">
+      :fixed="column.fixed" :key="column.prop" :type="column.type"
+      :sortable="column.sortable==null?true:column.sortable"></el-table-column>
+      <el-table-column label="操作" width="150" fixed="right" v-if="showOperation">
           <template slot-scope="scope">
             <kt-button label="编辑" :perms="permsEdit" :size="size" @click="handleEdit(scope.$index,scope.row)"></kt-button>
             <kt-button label="删除" :perms="permsDelete" :size="size" type="danger" @click="handleDelete(scope.$index,scope.row)" ></kt-button>
@@ -18,7 +19,7 @@
     <!--分页栏-->
     <div class="toolbar" style="padding:10px">
       <kt-button label="批量删除" :perms="permsDelete" :size="size" type="danger" @click="handleBatchDelete()"
-      :disabled="this.selections.length===0" style="float:left;">
+      :disabled="this.selections.length===0" style="float:left;" v-if="showOperation">
       </kt-button>
       <el-pagination layout="total,prev,pager,next,jumper" @current-change="refreshPageRequest"
       :current-page="pageRequest.pageNum" :page-size="pageRequest.pageSize" :total="data.totalSize" style="float:right"></el-pagination>
@@ -41,6 +42,10 @@ export default {
     maxHeight:{//表格最大高度
       type:Number,
       default:400
+    },
+    showOperation:{//是否显示操作组件
+      type:Boolean,
+      default:true
     },
     size:{//尺寸样式
       type:String,

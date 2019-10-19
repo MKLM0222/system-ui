@@ -1,15 +1,15 @@
 const loginData = {
   "code": 200,
-  "msg": null,
+  "msg": "success",
   "data": {
     "id": null,
     "userId": 1,
     "token": "77ae89be36504adfb5c09ef71409ea0e",
-    "expireTime": "2018-09-01T16:24:50.473+0000",
+    "expireTime": "2019-09-01T16:24:50.473+0000",
     "createBy": null,
     "createTime": null,
     "lastUpdateBy": null,
-    "lastUpdateTime": "2018-09-01T04:24:50.473+0000"
+    "lastUpdateTime": "2019-09-01T04:24:50.473+0000"
   }
 
 }
@@ -19,11 +19,7 @@ export function login() {
     //isOpen:false
     url:'login',
     type: 'post',
-    data: {
-        'msg':'success',
-        'code':0,
-        'data': loginData
-    }
+    data: loginData
   }
 }
 
@@ -37,11 +33,7 @@ const logoutData = {
 export function logout() {
   return {
     url: 'logout',
-    type: 'post',
-    data: {
-      'msg': 'success',
-      'code': 0,
-      'data': logoutData
-    }
+    type: 'get',
+    data: logoutData
   }
 }
