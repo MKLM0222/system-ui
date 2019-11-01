@@ -17,10 +17,10 @@
        </el-form>
      </div>
      <!--表格树内容栏-->
-     <el-table :data="tableTreeData" stripe size="mini" style="sidth:100%;"
+     <el-table :data="tableTreeData" stripe size="mini" style="width:100%;"
        v-loading="loading" element-loading-text="拼命加载中">
        <el-table-column
-        prop="name" header-align="center" align="center" width="80" label="ID">
+        prop="id" header-align="center" align="center" width="80" label="ID">
        </el-table-column>
        <table-tree-column
        prop="name" header-align="center" treeKey="id" width="150" label="名称">
