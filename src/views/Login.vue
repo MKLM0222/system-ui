@@ -12,7 +12,7 @@
      </el-form-item>
      <el-form-item style="width:100%;">
        <el-button type="primary" style="width:48%;" @click.native.prevent="reset">重置</el-button>
-       <el-button type="primary" style="width:48%;" @click.native.prevent="login" :loading="logining">登录</el-button>
+       <el-button type="primary" style="width:48%;" @click.native.prevent="login" :loading="loading">登录</el-button>
      </el-form-item>
   </el-form>
 </template>
@@ -25,7 +25,7 @@ export default {
   name:"Login",
   data(){
     return {
-      logining:false,
+      loading:false,
       loginForm:{
         account:'admin',
         password:'123456'
@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     login(){
+      this.loading = true
       let userInfo = {account:this.loginForm.account,
                       password:this.loginForm.password}
       this.$api.login.login(userInfo).then((res)=>{
@@ -57,6 +58,7 @@ export default {
           this.$store.commit('menuRouteLoaded',false)//要求重新加载导航菜单
           this.$router.push("/")//登录成功，跳转到主页
           }
+          this.loading = false
       }).catch(function(res) {
           this.$message({
             message:res.message,

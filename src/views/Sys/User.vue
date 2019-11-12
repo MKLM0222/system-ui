@@ -114,7 +114,7 @@ export default {
        this.pageRequest.columnFilters = {name: {name:'name',value:this.filters.name}}
        this.$api.user.findPage(this.pageRequest).then((res) => {
          this.pageResult = res.data
-       })
+       }).then(data.callback)
     },
     handleDelete:function(data) {
        this.$api.user.batchDelete(data.params).then(data.callback)
