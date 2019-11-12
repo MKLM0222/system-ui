@@ -6,12 +6,14 @@ Vue.use(vuex);
 import app from './modules/AppStore.js'
 import menu from './modules/Menu.js'
 import user from './modules/User.js'
+import iframe from './modules/iframe'
 
 const store = new vuex.Store({
    modules: {
      app: app,
      menu:menu,
-     user:user
+     user:user,
+     iframe:iframe
    }
 })
 

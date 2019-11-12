@@ -2,7 +2,6 @@
 
 import axios from 'axios';
 import config from './config';//默认设置
-import qs from 'qs';//序列化请求数据，根据服务端的要求
 import Cookies from  "js-cookie";
 import router from '@/router'
 

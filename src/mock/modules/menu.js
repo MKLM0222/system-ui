@@ -120,7 +120,7 @@ const navTreeData = {
             "id": 7,
             "parentId": 25,
             "name": "SQL监控",
-            "url": "/druid/sql",
+            "url": "iframe:/druid/login.html",
             "perms": null,
             "type": 1,
             "icon": "el-icon-info",

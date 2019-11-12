@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { getIFrameUrl } from '@/utils/iframe'
 export default {
   name: 'MenuTree',
   props: {
@@ -24,7 +25,12 @@ export default {
   methods: {
     handleRoute(menu) {
       //this.$router.push("/")
-      this.$router.push(menu.url)
+      let url = getIFrameUrl(menu.url)
+      if(!url){
+        url = menu.url
+      }
+      this.$router.push('/')
+      this.$router.push(url)
     }
   }
 }

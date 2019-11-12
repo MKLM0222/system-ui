@@ -7,9 +7,11 @@ import Intro from "@/views/Intro"
 import User from "@/views/Sys/User"
 import Menu from "@/views/Sys/Menu"
 import Dept from '@/views/Sys/Dept'
+import Druid from '@/views/Druid/Druid'
 import api from '@/http/api'
 import store from '@/store'
 import { isURL } from '@/utils/validate'
+import { getIFrameUrl } from '@/utils/iframe'
 
 Vue.use(Router)
 
@@ -20,7 +22,7 @@ const router=new Router({
       name: '首页',
       component: Home,
       children:[
-        {path:"",component:Intro,name:"系统介绍"},
+        {path:"",component:Intro,name:"系统介绍"}
         /*{path:"/sys/user",component:User,name:"用户管理"},
         {path:'/dept',component:Dept,name:'机构管理'},
         {path:"/menu",component:Menu,name:"菜单管理"}*/
@@ -64,6 +66,8 @@ router.beforeEach((to,from,next) => {
 
   //加载动态菜单和路由
   function addDynamicMenuAndRoutes(userName,to,from) {
+    //保存ifrmaeUrl到store,供IFrame组件读取展示
+    store.commit('setIFrameUrl',to.path)
     if(store.state.app.menuRouteLoaded) {
       console.log('动态菜单和路由已经存在')
       return
@@ -101,20 +105,13 @@ router.beforeEach((to,from,next) => {
         var route = {
            path:menuList[i].url,
            component:null,
-           name:menuList[i].name,
-           meta: {
-             menuId:menuList[i].menuId,
-             title:menuList[i].name,
-             isDynamic:true,
-             isTab:true,
-             iframeUrl:''
-           }
+           name:menuList[i].name
         }
         //url以http[s]://开头，通过iframe展示
-        if(isURL(menuList[i].url)){
-          route['path'] = menuList[i].url
-          route['name'] = menuList[i].name
-          route['mata']['iframeUrl']= menuList[i].url
+        let path = getIFrameUrl(menuList[i].url)
+        if(path){
+          route['path'] = path
+          route['component'] = resolve => require([`@/views/Iframe/Iframe`],resolve)
         }else {
           try {
             //根据菜单URL动态加载vue组件，这里要求vue组件必须按照url路径存储
