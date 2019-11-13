@@ -26,7 +26,7 @@ return {
 }
 }
 //删除
-export function del() {
+export function batchDelete() {
   return {
      url:'user/delete',
      type:'post',

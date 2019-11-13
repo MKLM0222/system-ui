@@ -46,7 +46,7 @@ export function findDeptTree(params) {
      for(let j=0;j<5;j++) {
        let obj={}
        obj.id = (i+1)+""+(j+1)
-       obj.parentId = parent.deptId
+       obj.parentId = parent.id
        obj.parentName = parent.name
        obj.name="机构部门 "+(i+1)+"-"+(j+1)
        parent.children.push(obj)

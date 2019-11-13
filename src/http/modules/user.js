@@ -12,12 +12,12 @@ export const save = (params) => {
 }
 
 //删除
-export const del = (params) => {
-    return axios({
-       url:'/user/delete',
-       method:'post',
-       params
-    })
+export const batchDelete = (data) => {
+  return axios({
+      url: '/user/delete',
+      method: 'post',
+      data
+  })
 }
 
 //分页查询
