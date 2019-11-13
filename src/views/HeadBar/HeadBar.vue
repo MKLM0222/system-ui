@@ -1,13 +1,13 @@
 <template>
-   <div class="container" :class="$store.state.app.collapse?'menu-bar-collapse-width':'menu-bar-width'">
+   <div class="container" :style="{'background':themeColor}" :class="$store.state.app.collapse?'menu-bar-collapse-width':'menu-bar-width'">
        <!--导航菜单隐藏显示切换-->
-       <span class="hamburger-container" :style="{'background':themeColor}">
-         <Hamburger :toggleClick="collapse" :isActive="$store.state.app.collapse"></Hamburger>
+       <span class="hamburger-container">
+         <Hamburger :onClick="onCollapse" :isActive="$store.state.app.collapse"></Hamburger>
        </span>
        <!--导航菜单-->
        <span class="nav-bar">
          <el-menu :default-active="activeIndex" class="el-menu-demo"
-           :style="{'background':themeColor}" text-color="#fff"
+              :style="{'background-color':themeColor}" text-color="#fff"
              active-text-color="#ffd04b" mode="horizontal" @select="selectNavBar()">
             <el-menu-item index="1" @click="$router.push('/')"><i class="fa fa-home fa-lg"></i> {{$t("common.home")}}</el-menu-item>
             <el-menu-item index="2">{{$t("common.doc")}}</el-menu-item>
@@ -77,7 +77,7 @@ export default {
       .catch(()=>{})
     },
     //折叠导航栏
-    collapse:function() {
+    onCollapse:function() {
       this.$store.commit('collapse')
     },
     //切换主题
@@ -87,7 +87,8 @@ export default {
   },
   computed:{
      ...mapState({
-       themeColor:state => state.app.themeColor
+       themeColor:state => state.app.themeColor,
+       collapse:state => state.app.collapse
      })
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
    <div class="menu-bar-container">
-      <div class="logo" :class="collapse?'menu-bar-collapse-width':'menu-bar-width'">
+      <div class="logo" :style="{'background-color':themeColor}" :class="collapse?'menu-bar-collapse-width':'menu-bar-width'">
           <img :src="this.logo" alt=""/><div>({{collapse?"":appName}})</div>
       </div>
        <el-menu
